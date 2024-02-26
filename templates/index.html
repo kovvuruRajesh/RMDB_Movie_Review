@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie-Review</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css')}}">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: blue; 
+            overflow-x: hidden; 
+        }
+        
+        nav {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1; 
+        }
+        
+        nav h1 {
+            margin: 0;
+        }
+        
+        .content {
+            padding: 0px; 
+        }
+        
+        .background-image {
+            background: url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876028.jpg') center/cover no-repeat;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px; 
+            overflow: hidden; 
+        }
+        
+        .review-form {
+            background-color: rgba(255, 255, 255, 0.9); 
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            max-width: 600px; 
+            text-align: center; 
+        }        
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical; 
+        }
+
+        input[type="submit"] {
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .submit-button {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .review-paragraph,
+        .sentiment-paragraph {
+            text-align: center;
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>RMDB Movie-Review</h1>
+    </nav>
+
+    <div class="content">
+        <div class="background-image">
+            <form action="/predict" method="post" class="review-form">
+                <label for="review">Enter your movie Review:</label>
+                <textarea id="review" name="review" rows="4" cols="50"></textarea>
+                <input type="submit" value="Submit" class="submit-button" />
+                {% if review %}
+                <p class="review-paragraph">Your Review: {{ review }}</p>
+                <p class="sentiment-paragraph">Sentiment: {{ sentiment }}</p>
+                {% endif %}
+            </form>
+        </div>
+    </div>
+
+</body> 
+</html>
